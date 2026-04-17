@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - Caneth Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="booking_form.css">
+</head>
+<body>
+    <div class="loading" id="loading"><div class="spinner"></div></div>
+
+    <div class="booking-container">
+        <div class="booking-header">
+            <i class="fas fa-calendar-alt"></i>
+            <h1>Book Your Luxury Stay</h1>
+            <p>Experience comfort and elegance at Caneth Hotel</p>
+        </div>
+
+        <div class="booking-form">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone Number *</label>
+                    <input type="tel" id="phone" required placeholder="+251 912 345 678">
+                </div>
+
+                <div class="room-type-group">
+                    <label><i class="fas fa-bed"></i> Room Type *</label>
+                    <div class="room-options">
+                        <div class="room-option">
+                            <input type="radio" name="roomType" id="kingSuite" value="King Suite" required>
+                            <label for="kingSuite">King Suite</label>
+                        </div>
+                        <div class="room-option">
+                            <input type="radio" name="roomType" id="executiveSuite" value="Executive Suite">
+                            <label for="executiveSuite">Executive Suite</label>
+                        </div>
+                        <div class="room-option">
+                            <input type="radio" name="roomType" id="presidentialSuite" value="Presidential Suite">
+                            <label for="presidentialSuite">Presidential Suite</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-tag"></i> Select Room *</label>
+                    <select id="selectRoom" required>
+                        <option value="">Select a specific room</option>
+                        <option value="Room 101 - King Suite">Room 101 - King Suite (City View)</option>
+                        <option value="Room 102 - King Suite">Room 102 - King Suite (Garden View)</option>
+                        <option value="Room 201 - Executive Suite">Room 201 - Executive Suite (Mountain View)</option>
+                        <option value="Room 202 - Executive Suite">Room 202 - Executive Suite (Pool View)</option>
+                        <option value="Room 301 - Presidential Suite">Room 301 - Presidential Suite (Panoramic View)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> Number of Guests *</label>
+                    <div class="guest-counter">
+                        <button type="button" onclick="decrementGuests()">-</button>
+                        <span id="guestCount">1</span>
+                        <button type="button" onclick="incrementGuests()">+</button>
+                    </div>
+                    <input type="hidden" id="guests" value="1">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> Check-In Date *</label>
+                        <input type="date" id="checkIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-times"></i> Check-Out Date *</label>
+                        <input type="date" id="checkOut" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-comment"></i> Special Requests</label>
+                    <textarea id="specialRequests" rows="2" placeholder="Any special requests?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-check-circle"></i> Confirm Booking
+                </button>
+                
+                <div id="waitingMessage" class="waiting-badge">
+                    <i class="fas fa-spinner fa-spin"></i> Waiting for admin approval...
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <i class="fas" id="modalIcon"></i>
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button onclick="closeModal()" style="margin-top: 15px; padding: 8px 25px; background: #B5523A; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-credit-card" style="color: #4caf50;"></i>
+            <h3>Complete Payment</h3>
+            <p style="margin: 15px 0;"><strong>Booking ID:</strong> <span id="paymentBookingId"></span></p>
+            <p style="margin: 15px 0;"><strong>Total Amount:</strong> <span id="paymentAmount"></span></p>
+            <p style="margin: 15px 0; color: #666;">Your booking has been approved! Please complete payment to confirm.</p>
+            
+            <div class="payment-options">
+                <div class="payment-option" onclick="processPayment('credit_card')">
+                    <i class="fas fa-credit-card"></i> Credit Card
+                </div>
+                <div class="payment-option" onclick="processPayment('mobile_money')">
+                    <i class="fas fa-mobile-alt"></i> Mobile Money
+                </div>
+                <div class="payment-option" onclick="processPayment('bank_transfer')">
+                    <i class="fas fa-university"></i> Bank Transfer
+                </div>
+            </div>
+            
+            <button onclick="closePaymentModal()" style="margin-top: 15px; width: 100%; padding: 10px; background: #999; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="booking_form.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms & Suites - Caneth Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="rooms.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="logo">
+            <img src="img/rfvh.jpg" alt="Caneth Hotel Logo">
+            <span>Caneth Hotel</span>
+        </div>
+        <nav class="nav" id="nav">
+            <a href="index.html">Home</a>
+            <a href="rooms.html" class="active">Rooms</a>
+            <a href="index.html">About Us</a>
+            <a href="index.html">Packages & Events</a>
+            <a href="index.html">Gallery</a>
+            <a href="index.html">Contact</a>
+            <a href="booking_form.html" class="check-availability-btn">
+                <i class="fas fa-calendar-check"></i> Check Availability
+            </a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="rooms-hero">
+        <div>
+            <h1>Luxurious Rooms & Suites</h1>
+            <p>Experience comfort, elegance, and unparalleled service</p>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <div class="rooms-container">
+        <div class="rooms-grid" id="roomsGrid">
+            <!-- Room cards will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Caneth Hotel</h3>
+                <p>Experience luxury and comfort in the heart of Adama, Ethiopia. Your perfect getaway awaits.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="rooms.html">Rooms</a></p>
+                <p><a href="#about-us">About Us</a></p>
+                <p><a href="#packages">Packages</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Adama, Ethiopia</p>
+                <p><i class="fas fa-phone"></i> +251 912 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> info@canethhotel.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Caneth Hotel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Room Data
+        const rooms = [
+            {
+                id: 1,
+                name: "King Suite",
+                price: 1899,
+                image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+                description: "Experience ultimate luxury in our spacious King Suite featuring elegant decor and premium amenities.",
+                size: "45 m²",
+                beds: "1 King Bed",
+                capacity: "2 Adults + 1 Child",
+                amenities: ["Free WiFi", "Mini Bar", "Room Service", "Smart TV", "Air Conditioning", "Safe Box"],
+                badge: "Most Popular"
+            },
+            {
+                id: 2,
+                name: "Executive Suite",
+                price: 2499,
+                image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+                description: "Perfect for business travelers, featuring a separate living area and workspace.",
+                size: "65 m²",
+                beds: "1 King Bed + Sofa",
+                capacity: "2 Adults + 2 Children",
+                amenities: ["Free WiFi", "Mini Bar", "Room Service", "Smart TV", "Work Desk", "Coffee Machine", "Bathrobe"],
+                badge: "Business Choice"
+            },
+            {
+                id: 3,
+                name: "Presidential Suite",
+                price: 3499,
+                image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+                description: "The epitome of luxury with panoramic views, private terrace, and butler service.",
+                size: "95 m²",
+                beds: "1 King Bed + 2 Twin",
+                capacity: "4 Adults + 2 Children",
+                amenities: ["Free WiFi", "Premium Mini Bar", "24/7 Butler", "Jacuzzi", "Private Terrace", "Smart TV", "Sound System"],
+                badge: "Luxury Choice"
+            },
+            {
+                id: 4,
+                name: "Deluxe Double",
+                price: 1299,
+                image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+                description: "Comfortable and stylish room perfect for couples or solo travelers.",
+                size: "32 m²",
+                beds: "1 Queen Bed",
+                capacity: "2 Adults",
+                amenities: ["Free WiFi", "TV", "Air Conditioning", "Mini Fridge", "Ensuite Bathroom"],
+                badge: "Best Value"
+            },
+            {
+                id: 5,
+                name: "Family Suite",
+                price: 2799,
+                image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                description: "Spacious suite designed for families with connecting rooms and kid-friendly amenities.",
+                size: "75 m²",
+                beds: "1 King + 2 Twin",
+                capacity: "4 Adults + 2 Children",
+                amenities: ["Free WiFi", "Kids Play Area", "Family TV", "Mini Kitchen", "Game Console", "Baby Cot"],
+                badge: "Family Favorite"
+            },
+            {
+                id: 6,
+                name: "Garden View Room",
+                price: 1599,
+                image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+                description: "Wake up to beautiful garden views and enjoy the serene atmosphere.",
+                size: "38 m²",
+                beds: "1 King Bed",
+                capacity: "2 Adults",
+                amenities: ["Free WiFi", "Garden View", "Private Balcony", "Mini Bar", "Smart TV"],
+                badge: "Scenic View"
+            }
+        ];
+
+        // Function to render rooms
+        function renderRooms() {
+            const roomsGrid = document.getElementById('roomsGrid');
+            
+            roomsGrid.innerHTML = rooms.map(room => `
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="${room.image}" alt="${room.name}">
+                        <div class="room-badge">${room.badge}</div>
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">${room.name}</h3>
+                        <div class="room-price">
+                            ${room.price} birr <span>/ night</span>
+                        </div>
+                        <p class="room-description">${room.description}</p>
+                        
+                        <div class="room-features">
+                            <div class="feature">
+                                <i class="fas fa-arrows-alt"></i>
+                                <span>${room.size}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>${room.beds}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-user-friends"></i>
+                                <span>${room.capacity}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-amenities">
+                            ${room.amenities.slice(0, 4).map(amenity => `
+                                <div class="amenity">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>${amenity}</span>
+                                </div>
+                            `).join('')}
+                            ${room.amenities.length > 4 ? `
+                                <div class="amenity">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span>+${room.amenities.length - 4} more</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <button class="book-now-btn" onclick="bookRoom('${room.name}', ${room.price})">
+                            <i class="fas fa-calendar-check"></i> Book Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Book room function
+        function bookRoom(roomName, price) {
+            // Store room details in localStorage
+            const bookingData = {
+                roomType: roomName,
+                price: price,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('selectedRoom', JSON.stringify(bookingData));
+            
+            // Redirect to booking form
+            window.location.href = 'booking_form.html';
+        }
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle with animation
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                // Prevent body scroll when menu is open
+                if (nav.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !menuToggle.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Reset menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && nav && menuToggle) {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Load rooms on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRooms();
+        });
+    </script>
+</body>
+</html>

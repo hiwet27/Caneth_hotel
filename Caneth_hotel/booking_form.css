@@ -1,0 +1,289 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/canet02.jpg') center/cover fixed;
+            padding: 40px 20px;
+        }
+
+        .booking-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .booking-header {
+            background: linear-gradient(135deg, #B5523A 0%, #9E4632 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .booking-header i {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .booking-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .booking-form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group label i {
+            margin-right: 6px;
+            color: #B5523A;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #B5523A;
+            box-shadow: 0 0 0 3px rgba(181, 82, 58, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .room-type-group {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .room-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .room-option {
+            position: relative;
+        }
+
+        .room-option input {
+            display: none;
+        }
+
+        .room-option label {
+            display: block;
+            padding: 8px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .room-option input:checked + label {
+            background: #B5523A;
+            border-color: #B5523A;
+            color: white;
+        }
+
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            width: fit-content;
+        }
+
+        .guest-counter button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .guest-counter button:hover {
+            background: #B5523A;
+            color: white;
+        }
+
+        .guest-counter span {
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 35px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #B5523A;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #9E4632;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-content i {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content.success i { color: #4caf50; }
+        .modal-content.error i { color: #f44336; }
+
+        .payment-options {
+            margin: 20px 0;
+        }
+
+        .payment-option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .payment-option:hover {
+            background: #B5523A;
+            border-color: #B5523A;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #B5523A;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .waiting-badge {
+            background: #ff9800;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            .booking-form { padding: 20px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
